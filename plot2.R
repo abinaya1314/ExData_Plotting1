@@ -1,0 +1,13 @@
+setwd("D:/r workspace/ExData_Plotting1")
+
+d<-read.csv2("household_power_consumption.csv",colClasses = "character")
+library(dplyr)
+rdata<-subset(d,d$Date=="2/2/2007"| d$Date=="1/2/2007")
+reqdata<-as.matrix(rdata)
+library(lubridate)
+datetime<-paste(reqdata[,1],reqdata[,2])
+x<-dmy_hms(datetime)
+y<-as.numeric(reqdata[,3])
+png("plot2.png",width = 480,height = 480)
+plot(x,y,type="l",ylab="Global Active Power (kilowatts)",xlab="")
+dev.off()
